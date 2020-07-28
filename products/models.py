@@ -21,6 +21,6 @@ class Product(models.Model):
         # body = str(self.body)
         # summ = body.find('[\.\!\?]')
         # summ += 1
-        return self.body[:100]
+        return self.body[:200]
 
 
