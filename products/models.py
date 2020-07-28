@@ -23,10 +23,4 @@ class Product(models.Model):
         # summ += 1
         return self.body[:100]
 
-    def icon_check(self):
-        if self.icon == None:
-            self.icon = self.imahge
-            return self.icon
-        else:
-            return self.icon
 

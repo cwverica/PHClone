@@ -5,7 +5,7 @@
 {% if error %}
 <br /><br /> {{ error }}<br /><br />
 {% endif %}
-</div><h2>Login</h2>
+<h2>Login</h2>
 
 <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
