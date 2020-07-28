@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Product(models.Model):
     title = models.CharField(max_length=250)
     pub_date = models.DateTimeField()
@@ -8,7 +9,7 @@ class Product(models.Model):
     url = models.TextField()
     image = models.ImageField(upload_to='images/')
     icon = models.ImageField(upload_to='images/', blank=True)
-    votes_total = models.IntegerField(default=1)
+    # votes_total = models.IntegerField(default=1)
     hunter = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -23,4 +24,14 @@ class Product(models.Model):
         # summ += 1
         return self.body[:200]
 
+    def votes_total(self):
+        total = 0
+        for each in Vote.objects:
+            if each.product_id == self.id:
+                total += 1
+        return total
 
+
+class Vote(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
